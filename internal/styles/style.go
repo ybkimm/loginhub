@@ -1,4 +1,4 @@
-package assets
+package styles
 
 import (
 	"net/http"
