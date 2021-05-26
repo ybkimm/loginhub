@@ -9,6 +9,7 @@ internal/assets/%.css: styles/%.css
 		--use postcss-nesting \
 		--use postcss-import \
 		--use tailwindcss \
-		--use autoprefixer --autoprefixer.browsers "> 5%" \
+		--use autoprefixer --autoprefixer.browsers \
+			"cover 99.5% or IE 11 and not IE < 11" \
 		--use cssnano  \
 		-o $@ $<
