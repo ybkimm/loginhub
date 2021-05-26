@@ -1,10 +1,10 @@
-$(shell mkdir -p internal/assets)
+$(shell mkdir -p internal/styles)
 
 POSTCSS := npx postcss-cli
 
-style: internal/assets/style.css
+style: internal/styles/style.css
 
-internal/assets/%.css: styles/%.css
+internal/styles/%.css: styles/%.css
 	${POSTCSS} \
 		--use postcss-nesting \
 		--use postcss-import \
