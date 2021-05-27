@@ -1,6 +1,6 @@
 module.exports = {
   purge: [
-    './tpls/html/*.html'
+    './internal/tpls/html/*.html'
   ],
   darkMode: 'media',
   theme: {
