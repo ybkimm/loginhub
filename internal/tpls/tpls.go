@@ -3,7 +3,6 @@ package tpls
 import (
 	"embed"
 	"errors"
-	"fmt"
 	"html/template"
 	"io"
 	"io/fs"
@@ -17,6 +16,14 @@ var ErrTemplateNotFound = errors.New("tpls: template not found")
 
 type Template struct {
 	templates map[string]*template.Template
+}
+
+func Load() (*Template, error) {
+	return readTpls(tplfs)
+}
+
+func LoadFromFS(tplfs fs.ReadDirFS) (*Template, error) {
+	return readTpls(tplfs)
 }
 
 func readTpls(tplfs fs.ReadDirFS) (*Template, error) {
@@ -85,8 +92,6 @@ func parseTpl(t *template.Template, fs fs.FS, name string) (*template.Template, 
 	if err != nil {
 		return nil, err
 	}
-
-	fmt.Print(string(data))
 
 	return t.Parse(string(data))
 }
