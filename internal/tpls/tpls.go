@@ -3,6 +3,7 @@ package tpls
 import (
 	"embed"
 	"errors"
+	"fmt"
 	"html/template"
 	"io"
 	"io/fs"
@@ -44,6 +45,8 @@ func readTpls(tplfs fs.ReadDirFS) (*Template, error) {
 			continue
 		}
 
+		fmt.Println(fileName)
+
 		_, err = parseTpl(baseTpl, tplfs, filepath.Join("html/", fileName))
 		if err != nil {
 			return nil, err
@@ -51,7 +54,6 @@ func readTpls(tplfs fs.ReadDirFS) (*Template, error) {
 
 		files[i] = files[len(files)-1]
 		files = files[:len(files)-1]
-		break
 	}
 
 	// Template map is here...

@@ -17,12 +17,15 @@ var fakeTpls = fstest.MapFS{
 	"html/_template.html": &fstest.MapFile{
 		Data: []byte(`{{define "template"}}<template>{{block "contents" .}}No Contents!{{end}}</template>{{end}}`),
 	},
+	"html/_nav.html": &fstest.MapFile{
+		Data: []byte(`{{define "nav"}}<nav>NAV</nav>{{end}}`),
+	},
 	"html/index.html": &fstest.MapFile{
-		Data: []byte(`{{define "contents"}}Hello, World!{{end}}{{template "template" .}}`),
+		Data: []byte(`{{define "contents"}}{{template "nav" .}}Hello, World!{{end}}{{template "template" .}}`),
 	},
 }
 
-const expectedTemplateResult = "<template>Hello, World!</template>"
+const expectedTemplateResult = "<template><nav>NAV</nav>Hello, World!</template>"
 
 func TestReadTpls(t *testing.T) {
 	tpl, err := readTpls(fakeTpls)
