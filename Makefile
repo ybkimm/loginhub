@@ -2,6 +2,9 @@ $(shell mkdir -p internal/styles)
 
 POSTCSS := npx postcss-cli
 
+tpldemo:
+	go run github.com/ybkimm/loginhub/cmd/tpldemo
+
 style: internal/styles/style.css
 
 internal/styles/%.css: styles/%.css
