@@ -1,5 +1,6 @@
 package configs
 
 type Config struct {
-	Port int `json:"port"`
+	Debug bool `json:"debug"`
+	Port  int  `json:"port"`
 }
