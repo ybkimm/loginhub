@@ -4,7 +4,15 @@ module.exports = {
   ],
   darkMode: 'media',
   theme: {
-    extend: {},
+    extend: {
+      lineHeight: (() => {
+        let map = {}
+        for (let i = 11; i <= 30; i++) {
+          map[i] = `${i*0.25}rem`
+        }
+        return map
+      })()
+    },
   },
   variants: {},
   plugins: []

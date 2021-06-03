@@ -1,13 +1,15 @@
-CSS_SRC := assets/public
+CSS_SRC := assets/styles
 CSS_DST := internal/assets/public
 
 $(shell mkdir -p ${CSS_DST})
 
 POSTCSS := npx postcss-cli
 
+.PHONY: tpldemo
 tpldemo:
 	go run github.com/ybkimm/loginhub/cmd/tpldemo
 
+.PHONY: style
 style: ${CSS_DST}/style.css
 
 ${CSS_DST}/%.css: ${CSS_SRC}/%.css tailwind.config.js
@@ -19,3 +21,7 @@ ${CSS_DST}/%.css: ${CSS_SRC}/%.css tailwind.config.js
 			"cover 99.5% or IE 11 and not IE < 11" \
 		--use cssnano  \
 		-o $@ $(firstword $<)
+
+.PHONY: clean
+clean:
+	rm ${CSS_DST}/*.css
