@@ -1,3 +1,5 @@
+# Build directory
+/build/
 
 # Created by https://www.toptal.com/developers/gitignore/api/node,go,git,macos,linux,windows,yarn
 # Edit at https://www.toptal.com/developers/gitignore?templates=node,go,git,macos,linux,windows,yarn

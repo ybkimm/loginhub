@@ -1,7 +1,6 @@
 package assets
 
 import (
-	"embed"
 	"errors"
 	"io"
 	"io/fs"
@@ -14,19 +13,14 @@ import (
 	"go.uber.org/zap"
 )
 
-//go:embed public
-var assetFS embed.FS
-
 type AssetHandler struct {
 	fs fs.FS
 }
 
-func NewHandlerFromEmbededAsset() *AssetHandler {
-	return &AssetHandler{assetFS}
-}
-
 func NewHandler(fs fs.FS) *AssetHandler {
-	return &AssetHandler{fs}
+	return &AssetHandler{
+		fs: fs,
+	}
 }
 
 func (h *AssetHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {

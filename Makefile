@@ -1,5 +1,5 @@
 CSS_SRC := assets/styles
-CSS_DST := internal/assets/public
+CSS_DST := build/styles
 
 $(shell mkdir -p ${CSS_DST})
 

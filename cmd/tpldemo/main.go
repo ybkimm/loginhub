@@ -8,12 +8,19 @@ import (
 )
 
 func handle(w http.ResponseWriter, r *http.Request) {
-	p := r.URL.Path
-	switch {
-	case strings.HasPrefix(p, "/public/"):
-		assetHandler.ServeHTTP(w, r)
+	log.Printf("[HTTP] %s %s", r.Method, r.URL.Path)
 
-	case p == "/":
+	switch {
+	case strings.HasPrefix(r.URL.Path, imagePrefix):
+		imageHandler.ServeHTTP(w, r)
+
+	case strings.HasPrefix(r.URL.Path, scriptPrefix):
+		scriptHandler.ServeHTTP(w, r)
+
+	case strings.HasPrefix(r.URL.Path, stylePrefix):
+		styleHandler.ServeHTTP(w, r)
+
+	case r.URL.Path == "/":
 		handleTpl(w, r)
 
 	default:
