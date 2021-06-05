@@ -18,7 +18,10 @@ var (
 )
 
 func init() {
-	reloadTemplate()
+	err := reloadTemplate()
+	if err != nil {
+		panic(err)
+	}
 	go watchTpl()
 }
 
