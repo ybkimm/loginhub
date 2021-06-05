@@ -27,9 +27,7 @@ func LoadFromFS(tplfs fs.ReadDirFS) (*Template, error) {
 }
 
 func readTpls(tplfs fs.ReadDirFS) (*Template, error) {
-	baseTpl := template.New("")
-
-	baseTpl.Funcs(funcs)
+	baseTpl := template.New("").Funcs(funcs)
 
 	// Get the files that need to be read from the directory
 	files, err := tplfs.ReadDir("html")
