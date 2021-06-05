@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "checkJs": true,
+    "lib": ["DOM", "ES2015"],
+  },
+  "include": [
+    "assets/scripts/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "build"
+  ]
+}
