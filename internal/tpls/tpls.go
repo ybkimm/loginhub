@@ -3,7 +3,6 @@ package tpls
 import (
 	"embed"
 	"errors"
-	"fmt"
 	"html/template"
 	"io"
 	"io/fs"
@@ -30,6 +29,8 @@ func LoadFromFS(tplfs fs.ReadDirFS) (*Template, error) {
 func readTpls(tplfs fs.ReadDirFS) (*Template, error) {
 	baseTpl := template.New("")
 
+	baseTpl.Funcs(funcs)
+
 	// Get the files that need to be read from the directory
 	files, err := tplfs.ReadDir("html")
 	if err != nil {
@@ -44,8 +45,6 @@ func readTpls(tplfs fs.ReadDirFS) (*Template, error) {
 		if fileName[0] != '_' {
 			continue
 		}
-
-		fmt.Println(fileName)
 
 		_, err = parseTpl(baseTpl, tplfs, filepath.Join("html/", fileName))
 		if err != nil {
