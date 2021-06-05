@@ -1,5 +1,78 @@
 {{define "contents"}}
-Index Page
+<div class="container mx-auto md:px-2">
+  <div class="flex flex-col gap-4 lg:flex-row lg:gap-2">
+    <div class="lg:w-1/4">
+      {{template "#sideMenuBegin"}}
+        {{template "#sideMenuItem" inlinePipeline "Hash" "#personal-info" "Icon" "person"       "Label" "개인정보"}}
+        {{template "#sideMenuItem" inlinePipeline "Hash" "#services"      "Icon" "apps"         "Label" "서비스"}}
+        {{template "#sideMenuItem" inlinePipeline "Hash" "#security"      "Icon" "lock"         "Label" "보안"}}
+        {{template "#sideMenuItem" inlinePipeline "Hash" "#my-data"       "Icon" "contact_page" "Label" "데이터"}}
+      {{template "#sideMenuEnd"}}
+    </div>
+
+    <div class="flex-1 flex flex-col px-3 lg:pt-4">
+      <div class="border border-red-500 bg-red-500 bg-opacity-10 rounded p-3 mb-6">
+        30분 전 수상한 로그인 시도가 있었습니다. <a class="text-blue-500 hover:underline" href="#security">자세히 알아보기</a>
+      </div>
+
+      <div class="border rounded mb-6" id="personal-info">
+        <div class="p-4">
+          <h2 class="text-xl">개인정보</h2>
+          <p class="text-sm opacity-50">
+            일부 정보를 사용자가 허용한 다른 서비스에서 이용할 수 있습니다.
+            서비스 탭에서 관리할 수 있습니다.
+          </p>
+        </div>
+        <div class="p-4">
+          사진
+        </div>
+        <div class="p-4">
+          이름
+        </div>
+        <div class="p-4">
+          생년월일
+        </div>
+        <div class="p-4">
+          성별
+        </div>
+        <div class="p-4">
+          비밀번호
+        </div>
+      </div>
+
+      <div class="border rounded mb-6">
+        <div class="p-4">
+          <h2 class="text-xl">연락처</h2>
+        </div>
+        <div class="p-4">
+          이메일
+        </div>
+        <div class="p-4">
+          전화번호
+        </div>
+      </div>
+
+      <div class="border rounded mb-6" id="services">
+        <div class="p-4">
+          <h2 class="text-xl">내 서비스</h2>
+          <p class="text-sm opacity-50">
+            이용중인 서비스를 확인하고 권한을 관리할 수 있습니다.
+          </p>
+        </div>
+        <div class="p-4">
+          이메일
+        </div>
+        <div class="p-4">
+          전화번호
+        </div>
+      </div>
+
+      <div>Service List</div>
+      <div>Device List</div>
+      <div>Data?</div>
+    </div>
+  </div>
+</div>
 {{end}}
 
-{{template "template" .}}
+{{- template "template" . -}}
