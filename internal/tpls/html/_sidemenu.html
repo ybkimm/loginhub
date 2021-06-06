@@ -1,16 +1,16 @@
 {{- define "#sideMenuBegin" -}}
-  <ul class="flex flex-col py-4 sm:flex-row sm:justify-center sm:gap-2 lg:flex-col lg:px-2"> <!-- SideMenu -->
+<ul class="flex flex-col py-4 sm:flex-row sm:justify-center sm:gap-2 lg:flex-col lg:px-2"> <!-- SideMenu -->
 {{- end -}}
 
 {{- define "#sideMenuItem" -}}
-  <li class="leading-9 px-3 sm:px-0">
-    <a href="{{.Hash}}" class="flex px-3 sm:px-6 py-2 bg-black bg-opacity-0 hover:bg-opacity-20 transition-colors rounded">
-      <i class="material-icons block text-3xl mr-2">{{.Icon}}</i>
-      <span class="block flex-1">{{.Label}}</span>
-    </a>
-  </li>
+<li class="leading-9 px-3 sm:px-0">
+  <a href="{{.Href}}" class="flex px-3 sm:px-6 py-2 bg-black bg-opacity-0 hover:bg-opacity-20 transition-colors rounded">
+    <i class="material-icons block text-3xl mr-2">{{.Icon}}</i>
+    <span class="block flex-1">{{.Label}}</span>
+  </a>
+</li>
 {{- end -}}
 
 {{- define "#sideMenuEnd" -}}
-  </ul> <!-- /SideMenu -->
+</ul> <!-- /SideMenu -->
 {{- end -}}

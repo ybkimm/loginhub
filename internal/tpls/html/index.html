@@ -3,10 +3,10 @@
   <div class="flex flex-col gap-4 lg:flex-row lg:gap-2">
     <div class="lg:w-1/4">
       {{template "#sideMenuBegin"}}
-        {{template "#sideMenuItem" inlinePipeline "Hash" "#personal-info" "Icon" "person"       "Label" "개인정보"}}
-        {{template "#sideMenuItem" inlinePipeline "Hash" "#services"      "Icon" "apps"         "Label" "서비스"}}
-        {{template "#sideMenuItem" inlinePipeline "Hash" "#security"      "Icon" "lock"         "Label" "보안"}}
-        {{template "#sideMenuItem" inlinePipeline "Hash" "#my-data"       "Icon" "contact_page" "Label" "데이터"}}
+        {{template "#sideMenuItem" inlinePipeline "Href" "#personal-info" "Icon" "person"       "Label" "개인정보"}}
+        {{template "#sideMenuItem" inlinePipeline "Href" "#services"      "Icon" "apps"         "Label" "서비스"}}
+        {{template "#sideMenuItem" inlinePipeline "Href" "#security"      "Icon" "lock"         "Label" "로그인 된 기기"}}
+        {{template "#sideMenuItem" inlinePipeline "Href" "#my-data"       "Icon" "contact_page" "Label" "데이터"}}
       {{template "#sideMenuEnd"}}
     </div>
 
@@ -15,14 +15,8 @@
         30분 전 수상한 로그인 시도가 있었습니다. <a class="text-blue-500 hover:underline" href="#security">자세히 알아보기</a>
       </div>
 
-      <div class="border rounded mb-6" id="personal-info">
-        <div class="p-4">
-          <h2 class="text-xl">개인정보</h2>
-          <p class="text-sm opacity-50">
-            일부 정보를 사용자가 허용한 다른 서비스에서 이용할 수 있습니다.
-            서비스 탭에서 관리할 수 있습니다.
-          </p>
-        </div>
+      {{template "#sectionBegin" inlinePipeline "ID" "personal-info"}}
+        {{template "#sectionLeading" inlinePipeline "Title" "개인정보" "SubTitle" "일부 정보를 내가 허용한 다른 서비스에서 이용할 수 있습니다."}}
         <div class="p-4">
           사진
         </div>
@@ -38,38 +32,29 @@
         <div class="p-4">
           비밀번호
         </div>
-      </div>
+      {{template "#sectionEnd"}}
 
-      <div class="border rounded mb-6">
-        <div class="p-4">
-          <h2 class="text-xl">연락처</h2>
-        </div>
+      {{template "#sectionBegin"}}
+        {{template "#sectionLeading" inlinePipeline "Title" "연락처"}}
         <div class="p-4">
           이메일
         </div>
         <div class="p-4">
           전화번호
         </div>
-      </div>
+      {{template "#sectionEnd"}}
 
-      <div class="border rounded mb-6" id="services">
-        <div class="p-4">
-          <h2 class="text-xl">내 서비스</h2>
-          <p class="text-sm opacity-50">
-            이용중인 서비스를 확인하고 권한을 관리할 수 있습니다.
-          </p>
-        </div>
-        <div class="p-4">
-          이메일
-        </div>
-        <div class="p-4">
-          전화번호
-        </div>
-      </div>
+      {{template "#sectionBegin"}}
+        {{template "#sectionLeading" inlinePipeline "Title" "내 서비스"}}
+      {{template "#sectionEnd"}}
 
-      <div>Service List</div>
-      <div>Device List</div>
-      <div>Data?</div>
+      {{template "#sectionBegin"}}
+        {{template "#sectionLeading" inlinePipeline "Title" "로그인 된 기기"}}
+      {{template "#sectionEnd"}}
+
+      {{template "#sectionBegin"}}
+        {{template "#sectionLeading" inlinePipeline "Title" "내 데이터"}}
+      {{template "#sectionEnd"}}
     </div>
   </div>
 </div>
