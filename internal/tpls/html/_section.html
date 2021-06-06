@@ -1,0 +1,24 @@
+{{- define "#sectionBegin" -}}
+<div class="border rounded mb-6 pt-4"{{ if (isSet "ID" .) }} id="{{.ID}}"{{end}}> <!-- Section -->
+{{- end -}}
+
+{{- define "#sectionItemBegin" -}}
+<div class="p-4 pt-0">
+{{- end -}}
+
+{{- define "#sectionItemEnd" -}}
+</div>
+{{- end -}}
+
+{{- define "#sectionLeading" -}}
+{{- template "#sectionItemBegin" -}}
+  <h2 class="text-xl">{{.Title}}</h2>
+  {{- if (isSet "SubTitle" .) -}}
+    <p class="text-sm opacity-50">{{.SubTitle}}</p>
+  {{- end -}}
+{{- template "#sectionItemEnd" -}}
+{{- end -}}
+
+{{- define "#sectionEnd" -}}
+</div> <!-- /Section -->
+{{- end -}}

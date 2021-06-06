@@ -1,6 +1,6 @@
 {{define "template" -}}
 <!DOCTYPE html>
-<html>
+<html class="h-full">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,9 +25,9 @@
     })(() => document.body.classList.remove('preload'))
   </script>
 </head>
-<body class="preload">
-  <div class="wrapper">
-    <nav class="shadow-lg border-b border-black border-opacity-10 z-30">
+<body class="preload h-full">
+  <div class="wrapper min-h-full flex flex-col">
+    <nav class="flex-none shadow-lg border-b border-black border-opacity-10 z-30">
       <div class="container mx-auto px-4 md:px-0 flex">
         <!-- Branding -->
         <div class="block flex-1 h-16 py-2">

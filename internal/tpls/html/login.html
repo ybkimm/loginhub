@@ -1,0 +1,28 @@
+{{define "contents"}}
+<div class="flex flex-1 flex-col py-8 items-center justify-center">
+  <div class="w-full max-w-md mx-2 mb-6 rounded border shadow-lg pt-6 pb-2 text-center">
+    {{template "#sectionLeading" inlinePipeline "Title" "PLATFORM 계정으로 로그인"}}
+    {{template "#sectionItemBegin"}}
+      <form class="px-4">
+        <div class="py-4">
+          {{template "#formInput" inlinePipeline "Type" "email" "Name" "email" "Label" "이메일" "Placeholder" "email@example.com"}}
+          {{template "#formInput" inlinePipeline "Type" "password" "Name" "password" "Label" "비밀번호" "Placeholder" "\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022"}}
+        </div>
+        {{template "#formSubmit" inlinePipeline "Label" "로그인"}}
+      </form>
+    {{template "#sectionItemEnd"}}
+  </div>
+
+  <h1 class="mb-4">다른 플랫폼 계정으로 로그인하기</h1>
+
+  <div class="w-full flex justify-center">
+    <div class="flex-1 mx-4 max-w-md">
+      {{template "#loginWith" inlinePipeline "Background" "#ffe500" "Foreground" "#000000cc" "Icon" "/assets/images/kakao_login_icon.svg" "Label" "카카오 로그인"}}
+      {{template "#loginWith" inlinePipeline "Background" "#000000" "Foreground" "#ffffff" "Icon" "/assets/images/apple_login_icon.svg" "Label" "Apple로 로그인"}}
+      {{template "#loginWith" inlinePipeline "Background" "#ffffff" "Foreground" "#00000090" "Icon" "/assets/images/google_login_icon.svg" "Label" "Google로 로그인"}}
+    </div>
+  </div>
+</div>
+{{end}}
+
+{{- template "template" . -}}
