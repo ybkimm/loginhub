@@ -2,6 +2,7 @@
   "private": true,
   "version": "0.0.0",
   "dependencies": {
+    "@tailwindcss/forms": "^0.3.3",
     "tailwindcss": "^2.1.2"
   },
   "devDependencies": {
