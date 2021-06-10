@@ -1,6 +1,7 @@
 package main
 
 import (
+	"io"
 	"log"
 	"net/http"
 	"path/filepath"
@@ -48,7 +49,25 @@ func handleTpl(w http.ResponseWriter, r *http.Request) {
 	tplMutex.RLock()
 	defer tplMutex.RUnlock()
 
-	err := tpl.ExecuteTemplate(w, "index.html", nil)
+	var (
+		name = r.URL.Path[1:]
+	)
+
+	if len(name) == 0 {
+		name = "index.html"
+	}
+
+	if !tpl.Has(name) {
+		w.Header().Set("Content-Type", "text/plain;charset=utf-8")
+		w.Header().Set("Content-Length", "13")
+		w.WriteHeader(http.StatusNotFound)
+		io.WriteString(w, "404 Not Found")
+		return
+	}
+
+	w.Header().Set("Content-Type", "text/html;charset=utf-8")
+	w.WriteHeader(http.StatusOK)
+	err := tpl.ExecuteTemplate(w, name, nil)
 	if err != nil {
 		log.Printf("Render Error: %v\n", err)
 	}

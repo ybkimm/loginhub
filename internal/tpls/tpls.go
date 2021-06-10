@@ -102,3 +102,8 @@ func (t *Template) ExecuteTemplate(w io.Writer, name string, data interface{}) e
 	}
 	return tpl.Execute(w, data)
 }
+
+func (t *Template) Has(name string) bool {
+	_, ok := t.templates[name]
+	return ok
+}

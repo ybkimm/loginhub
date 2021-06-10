@@ -1,7 +1,6 @@
 package main
 
 import (
-	"io"
 	"log"
 	"net/http"
 	"strings"
@@ -20,14 +19,8 @@ func handle(w http.ResponseWriter, r *http.Request) {
 	case strings.HasPrefix(r.URL.Path, stylePrefix):
 		styleHandler.ServeHTTP(w, r)
 
-	case r.URL.Path == "/":
-		handleTpl(w, r)
-
 	default:
-		w.Header().Set("Content-Type", "text/plain;charset=utf-8")
-		w.Header().Set("Content-Length", "13")
-		w.WriteHeader(http.StatusNotFound)
-		io.WriteString(w, "404 Not Found")
+		handleTpl(w, r)
 	}
 }
 
