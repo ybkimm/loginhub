@@ -3,7 +3,13 @@ CSS_DST := build/styles
 
 $(shell mkdir -p ${CSS_DST})
 
+JS_SRC := assets/scripts
+JS_DST := build/scripts
+
+$(shell mkdir -p ${JS_DST})
+
 POSTCSS := npx postcss-cli
+DENO_BUNDLE := deno bundle -c ./tsconfig.json
 
 .PHONY: tpldemo
 tpldemo:
@@ -22,6 +28,13 @@ ${CSS_DST}/%.css: ${CSS_SRC}/%.css tailwind.config.js
 		--use cssnano  \
 		-o $@ $(firstword $<)
 
+.PHONY: script
+script: ${JS_DST}/main.bundle.js
+
+${JS_DST}/%.bundle.js: ${JS_SRC}/%.ts tsconfig.json
+	${DENO_BUNDLE} $(firstword $<) $@
+
 .PHONY: clean
 clean:
-	rm ${CSS_DST}/*.css
+	rm ${CSS_DST}/*.css \
+	   ${JS_DST}/*.js

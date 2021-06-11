@@ -1,2 +1,2 @@
-// Dummy Script.
+// Dummy Script
 console.log('Hello, World!')

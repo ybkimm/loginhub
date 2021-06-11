@@ -20,11 +20,11 @@ func StyleDir() fs.FS {
 	return subfs(styleFS, "build/styles")
 }
 
-//go:embed assets/scripts
+//go:embed build/scripts
 var scriptFS embed.FS
 
 func ScriptDir() fs.FS {
-	return subfs(scriptFS, "assets/scripts")
+	return subfs(scriptFS, "build/scripts")
 }
 
 //go:embed assets/images
