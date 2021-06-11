@@ -8,8 +8,12 @@ JS_DST := build/scripts
 
 $(shell mkdir -p ${JS_DST})
 
+KEY_DST := internal/secrets
+KEY_FILES := $(addprefix ${KEY_DST}/,token.key)
+
 POSTCSS := npx postcss-cli
 DENO_BUNDLE := deno bundle -c ./tsconfig.json
+KEYGEN := ./scripts/keygen.sh
 
 .PHONY: tpldemo
 tpldemo:
@@ -33,6 +37,11 @@ script: ${JS_DST}/main.bundle.js
 
 ${JS_DST}/%.bundle.js: ${JS_SRC}/%.ts tsconfig.json
 	${DENO_BUNDLE} $(firstword $<) $@
+
+secrets: ${KEY_FILES}
+
+${KEY_DST}/%.key:
+	-${KEYGEN} > $@
 
 .PHONY: clean
 clean:
