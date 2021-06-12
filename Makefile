@@ -38,6 +38,7 @@ script: ${JS_DST}/main.bundle.js
 ${JS_DST}/%.bundle.js: ${JS_SRC}/%.ts tsconfig.json
 	${DENO_BUNDLE} $(firstword $<) $@
 
+.PHONY: secrets
 secrets: ${KEY_FILES}
 
 ${KEY_DST}/%.key:
