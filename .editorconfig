@@ -14,14 +14,10 @@ indent_size = 4
 indent_style = tab
 indent_size = 4
 
-[*.{js,ts,json}]
+[*.{js,ts,json,yaml}]
 indent_style = space
 indent_size = 2
 
 [*.html]
-indent_style = space
-indent_size = 2
-
-[package.json]
 indent_style = space
 indent_size = 2
