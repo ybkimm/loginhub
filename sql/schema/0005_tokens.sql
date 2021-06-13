@@ -8,7 +8,7 @@ CREATE TABLE tokens (
     device_name VARCHAR(128) NOT NULL,
     country_name VARCHAR(128) NOT NULL,
     last_access TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY id,
+    PRIMARY KEY (id),
     CONSTRAINT fk_tokens_owner_id
         FOREIGN KEY (owner_id) REFERENCES users(id)
         ON DELETE CASCADE,

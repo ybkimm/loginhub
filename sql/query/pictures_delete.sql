@@ -1,3 +1,3 @@
 -- name: DeletePicture :exec
-DELETE FROM pictures
-WHERE id = $1;
+DELETE FROM pictures WHERE
+    id = $1;

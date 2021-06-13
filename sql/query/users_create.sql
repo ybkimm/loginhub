@@ -1,11 +1,20 @@
 -- name: CreateUser :exec
 INSERT INTO users (
-    id = $1,
-    email = $2,
-    picture_id = $3,
-    given_name = $4,
-    family_name = $5,
-    gender = $6,
-    birthdate = $7,
-    flag = $8
+    id,
+    email,
+    picture_id,
+    given_name,
+    family_name,
+    gender,
+    birthdate,
+    flag
+) VALUES (
+    $1,
+    $2,
+    $3,
+    $4,
+    $5,
+    $6,
+    $7,
+    $8
 );

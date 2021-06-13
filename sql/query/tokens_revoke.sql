@@ -1,5 +1,5 @@
 -- name: RevokeToken :exec
-UPDATE FROM tokens SET
+UPDATE tokens SET
     revoked = 'true'
 WHERE
     id = $1;

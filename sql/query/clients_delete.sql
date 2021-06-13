@@ -1,3 +1,3 @@
 -- name: DeleteClient :exec
-DELETE FROM clients
+DELETE FROM clients WHERE
     id = $1;

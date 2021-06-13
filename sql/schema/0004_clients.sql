@@ -12,7 +12,7 @@ CREATE TABLE clients (
     terms_url varchar(512),
     privacy_policy_url varchar(512),
     flag INT,
-    PRIMARY KEY id,
+    PRIMARY KEY (id),
     CONSTRAINT fk_clients_owner_id
         FOREIGN KEY (owner_id) REFERENCES users(id)
         ON DELETE RESTRICT,
