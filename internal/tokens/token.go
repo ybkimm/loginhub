@@ -18,19 +18,19 @@ var HashAlgorithm = sha3.New384
 var Base64Encoding = base64.RawURLEncoding
 
 type Token struct {
-	ServiceName string `json:"iss"`
-	UserID      string `json:"sub"`
-	ClientID    string `json:"aud"`
-	Nonce       string `json:"nonce"`
-	Expiration  int64  `json:"exp"`
-	IssuedAt    int64  `json:"iat"`
-	Name        string `json:"name"`
-	GivenName   string `json:"given_name"`
-	FamilyName  string `json:"family_name"`
-	Gender      string `json:"gender"`
-	BirthDate   string `json:"birthdate"`
-	Email       string `json:"email"`
-	Picture     string `json:"picture"`
+	ServiceIdent string `json:"iss"`
+	UserID       string `json:"sub"`
+	ClientID     string `json:"aud"`
+	Nonce        string `json:"nonce"`
+	Expiration   int64  `json:"exp"`
+	IssuedAt     int64  `json:"iat"`
+	Name         string `json:"name"`
+	GivenName    string `json:"given_name"`
+	FamilyName   string `json:"family_name"`
+	Gender       string `json:"gender"`
+	BirthDate    string `json:"birthdate"`
+	Email        string `json:"email"`
+	Picture      string `json:"picture"`
 }
 
 func Parse(src []byte) (*Token, error) {

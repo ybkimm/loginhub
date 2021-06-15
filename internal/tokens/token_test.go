@@ -20,7 +20,7 @@ func TestParse(t *testing.T) {
 			"valid token",
 			"eyJ0eXAiOiJMSlQiLCJhbGciOiJIUzM4NCJ9.eyJpc3MiOiJodHRwOi8vc2VydmVyLmV4YW1wbGUuY29tIiwic3ViIjoiMjQ4Mjg5NzYxMDAxIiwiYXVkIjoiczZCaGRSa3F0MyIsIm5vbmNlIjoibi0wUzZfV3pBMk1qIiwiZXhwIjoxMzExMjgxOTcwLCJpYXQiOjEzMTEyODA5NzAsIm5hbWUiOiJKYW5lIERvZSIsImdpdmVuX25hbWUiOiJKYW5lIiwiZmFtaWx5X25hbWUiOiJEb2UiLCJnZW5kZXIiOiJmZW1hbGUiLCJiaXJ0aGRhdGUiOiIwMDAwLTEwLTMxIiwiZW1haWwiOiJqYW5lZG9lQGV4YW1wbGUuY29tIiwicGljdHVyZSI6Imh0dHA6Ly9leGFtcGxlLmNvbS9qYW5lZG9lL21lLmpwZyJ9.-iFD-Y5QNGF52FPYF0bwUt2sl3Xg9lHbH4eq6300nWgw4iVtyiHpZR-AD7zMgbSe",
 			&Token{
-				ServiceName: "http://server.example.com",
+				ServiceIdent: "http://server.example.com",
 				UserID:      "248289761001",
 				ClientID:    "s6BhdRkqt3",
 				Nonce:       "n-0S6_WzA2Mj",
@@ -91,7 +91,7 @@ func TestSign(t *testing.T) {
 		{
 			"valid token",
 			&Token{
-				ServiceName: "http://server.example.com",
+				ServiceIdent: "http://server.example.com",
 				UserID:      "248289761001",
 				ClientID:    "s6BhdRkqt3",
 				Nonce:       "n-0S6_WzA2Mj",
@@ -134,7 +134,7 @@ func TestValidate(t *testing.T) {
 		},
 		{
 			&Token{
-				ServiceName: "http://server.example.com",
+				ServiceIdent: "http://server.example.com",
 				UserID:      "248289761001",
 				ClientID:    "s6BhdRkqt3",
 				Nonce:       "n-0S6_WzA2Mj",
@@ -152,7 +152,7 @@ func TestValidate(t *testing.T) {
 		},
 		{
 			&Token{
-				ServiceName: "http://server.example.com",
+				ServiceIdent: "http://server.example.com",
 				UserID:      "248289761001",
 				ClientID:    "s6BhdRkqt3",
 				Nonce:       "n-0S6_WzA2Mj",
@@ -170,7 +170,7 @@ func TestValidate(t *testing.T) {
 		},
 		{
 			&Token{
-				ServiceName: "http://server.example.com",
+				ServiceIdent: "http://server.example.com",
 				UserID:      "248289761001",
 				ClientID:    "s6BhdRkqt3",
 				Nonce:       "n-0S6_WzA2Mj",
