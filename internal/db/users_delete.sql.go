@@ -12,7 +12,7 @@ DELETE FROM users WHERE
     id = $1
 `
 
-func (q *Queries) DeleteUser(ctx context.Context, id string) error {
+func (q *Queries) DeleteUser(ctx context.Context, id []byte) error {
 	_, err := q.exec(ctx, q.deleteUserStmt, deleteUser, id)
 	return err
 }

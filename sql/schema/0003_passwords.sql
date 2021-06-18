@@ -1,7 +1,7 @@
 -- +goose Up
 CREATE TABLE passwords (
-    id CHAR(64) NOT NULL,
-    owner_id CHAR(64) NOT NULL,
+    id BYTEA(16) NOT NULL,
+    owner_id BYTEA(16) NOT NULL,
     pass_hash CHAR(64) NOT NULL,
     revoked BOOLEAN NOT NULL DEFAULT 'false',
     PRIMARY KEY (id),

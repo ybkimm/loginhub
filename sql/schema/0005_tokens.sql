@@ -1,8 +1,8 @@
 -- +goose Up
 CREATE TABLE tokens (
-    id CHAR(64) NOT NULL,
-    owner_id CHAR(64) NOT NULL,
-    client_id CHAR(64) NOT NULL,
+    id BYTEA(16) NOT NULL,
+    owner_id BYTEA(16) NOT NULL,
+    client_id BYTEA(16) NOT NULL,
     expired_at TIMESTAMP NOT NULL,
     revoked BOOLEAN NOT NULL DEFAULT 'false',
     device_name VARCHAR(128) NOT NULL,

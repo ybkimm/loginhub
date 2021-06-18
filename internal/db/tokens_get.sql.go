@@ -13,7 +13,7 @@ SELECT id, owner_id, client_id, expired_at, revoked, device_name, country_name, 
 LIMIT 1
 `
 
-func (q *Queries) GetToken(ctx context.Context, id string) (Token, error) {
+func (q *Queries) GetToken(ctx context.Context, id []byte) (Token, error) {
 	row := q.queryRow(ctx, q.getTokenStmt, getToken, id)
 	var i Token
 	err := row.Scan(

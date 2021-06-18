@@ -14,7 +14,7 @@ LIMIT $2 OFFSET $3
 `
 
 type ListTokensByUserIDParams struct {
-	OwnerID string `json:"ownerID"`
+	OwnerID []byte `json:"ownerID"`
 	Limit   int32  `json:"limit"`
 	Offset  int32  `json:"offset"`
 }

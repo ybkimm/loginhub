@@ -12,7 +12,7 @@ DELETE FROM clients WHERE
     id = $1
 `
 
-func (q *Queries) DeleteClient(ctx context.Context, id string) error {
+func (q *Queries) DeleteClient(ctx context.Context, id []byte) error {
 	_, err := q.exec(ctx, q.deleteClientStmt, deleteClient, id)
 	return err
 }

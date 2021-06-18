@@ -18,7 +18,7 @@ WHERE
 `
 
 type UpdatePictureParams struct {
-	ID       string `json:"id"`
+	ID       []byte `json:"id"`
 	DescText string `json:"descText"`
 	FileSize int32  `json:"fileSize"`
 	Width    int32  `json:"width"`

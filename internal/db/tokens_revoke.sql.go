@@ -14,7 +14,7 @@ WHERE
     id = $1
 `
 
-func (q *Queries) RevokeToken(ctx context.Context, id string) error {
+func (q *Queries) RevokeToken(ctx context.Context, id []byte) error {
 	_, err := q.exec(ctx, q.revokeTokenStmt, revokeToken, id)
 	return err
 }

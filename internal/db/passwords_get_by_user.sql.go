@@ -13,7 +13,7 @@ SELECT id, owner_id, pass_hash, revoked FROM passwords WHERE
 LIMIT 1
 `
 
-func (q *Queries) GetPasswordByUserID(ctx context.Context, ownerID string) (Password, error) {
+func (q *Queries) GetPasswordByUserID(ctx context.Context, ownerID []byte) (Password, error) {
 	row := q.queryRow(ctx, q.getPasswordByUserIDStmt, getPasswordByUserID, ownerID)
 	var i Password
 	err := row.Scan(

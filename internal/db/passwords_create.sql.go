@@ -20,8 +20,8 @@ INSERT INTO passwords (
 `
 
 type CreatePasswordParams struct {
-	ID       string `json:"id"`
-	OwnerID  string `json:"ownerID"`
+	ID       []byte `json:"id"`
+	OwnerID  []byte `json:"ownerID"`
 	PassHash string `json:"passHash"`
 }
 

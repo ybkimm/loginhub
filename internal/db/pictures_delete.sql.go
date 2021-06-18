@@ -12,7 +12,7 @@ DELETE FROM pictures WHERE
     id = $1
 `
 
-func (q *Queries) DeletePicture(ctx context.Context, id string) error {
+func (q *Queries) DeletePicture(ctx context.Context, id []byte) error {
 	_, err := q.exec(ctx, q.deletePictureStmt, deletePicture, id)
 	return err
 }

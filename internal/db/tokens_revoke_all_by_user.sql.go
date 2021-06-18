@@ -15,7 +15,7 @@ WHERE
     revoked = 'false'
 `
 
-func (q *Queries) RevokeAllTokensByUserID(ctx context.Context, ownerID string) error {
+func (q *Queries) RevokeAllTokensByUserID(ctx context.Context, ownerID []byte) error {
 	_, err := q.exec(ctx, q.revokeAllTokensByUserIDStmt, revokeAllTokensByUserID, ownerID)
 	return err
 }

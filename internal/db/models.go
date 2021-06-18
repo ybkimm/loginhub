@@ -8,14 +8,14 @@ import (
 )
 
 type Client struct {
-	ID               string         `json:"id"`
+	ID               []byte         `json:"id"`
 	ClientName       string         `json:"clientName"`
 	SecretHash       string         `json:"secretHash"`
-	OwnerID          string         `json:"ownerID"`
+	OwnerID          []byte         `json:"ownerID"`
 	ClientCategory   string         `json:"clientCategory"`
 	ClientDesc       string         `json:"clientDesc"`
-	BannerPictureID  sql.NullString `json:"bannerPictureID"`
-	IconID           sql.NullString `json:"iconID"`
+	BannerPictureID  []byte         `json:"bannerPictureID"`
+	IconID           []byte         `json:"iconID"`
 	RedirectUris     sql.NullString `json:"redirectUris"`
 	TermsUrl         sql.NullString `json:"termsUrl"`
 	PrivacyPolicyUrl sql.NullString `json:"privacyPolicyUrl"`
@@ -23,14 +23,14 @@ type Client struct {
 }
 
 type Password struct {
-	ID       string `json:"id"`
-	OwnerID  string `json:"ownerID"`
+	ID       []byte `json:"id"`
+	OwnerID  []byte `json:"ownerID"`
 	PassHash string `json:"passHash"`
 	Revoked  bool   `json:"revoked"`
 }
 
 type Picture struct {
-	ID       string `json:"id"`
+	ID       []byte `json:"id"`
 	DescText string `json:"descText"`
 	FileSize int32  `json:"fileSize"`
 	Width    int32  `json:"width"`
@@ -38,9 +38,9 @@ type Picture struct {
 }
 
 type Token struct {
-	ID          string    `json:"id"`
-	OwnerID     string    `json:"ownerID"`
-	ClientID    string    `json:"clientID"`
+	ID          []byte    `json:"id"`
+	OwnerID     []byte    `json:"ownerID"`
+	ClientID    []byte    `json:"clientID"`
 	ExpiredAt   time.Time `json:"expiredAt"`
 	Revoked     bool      `json:"revoked"`
 	DeviceName  string    `json:"deviceName"`
@@ -49,9 +49,9 @@ type Token struct {
 }
 
 type User struct {
-	ID         string    `json:"id"`
+	ID         []byte    `json:"id"`
 	Email      string    `json:"email"`
-	PictureID  string    `json:"pictureID"`
+	PictureID  []byte    `json:"pictureID"`
 	GivenName  string    `json:"givenName"`
 	FamilyName string    `json:"familyName"`
 	Gender     string    `json:"gender"`

@@ -24,12 +24,12 @@ WHERE
 `
 
 type UpdateClientParams struct {
-	ID               string         `json:"id"`
+	ID               []byte         `json:"id"`
 	ClientName       string         `json:"clientName"`
 	ClientCategory   string         `json:"clientCategory"`
 	ClientDesc       string         `json:"clientDesc"`
-	BannerPictureID  sql.NullString `json:"bannerPictureID"`
-	IconID           sql.NullString `json:"iconID"`
+	BannerPictureID  []byte         `json:"bannerPictureID"`
+	IconID           []byte         `json:"iconID"`
 	RedirectUris     sql.NullString `json:"redirectUris"`
 	TermsUrl         sql.NullString `json:"termsUrl"`
 	PrivacyPolicyUrl sql.NullString `json:"privacyPolicyUrl"`

@@ -31,9 +31,9 @@ INSERT INTO users (
 `
 
 type CreateUserParams struct {
-	ID         string    `json:"id"`
+	ID         []byte    `json:"id"`
 	Email      string    `json:"email"`
-	PictureID  string    `json:"pictureID"`
+	PictureID  []byte    `json:"pictureID"`
 	GivenName  string    `json:"givenName"`
 	FamilyName string    `json:"familyName"`
 	Gender     string    `json:"gender"`

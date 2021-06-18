@@ -27,9 +27,9 @@ INSERT INTO tokens (
 `
 
 type CreateTokenParams struct {
-	ID          string    `json:"id"`
-	OwnerID     string    `json:"ownerID"`
-	ClientID    string    `json:"clientID"`
+	ID          []byte    `json:"id"`
+	OwnerID     []byte    `json:"ownerID"`
+	ClientID    []byte    `json:"clientID"`
 	ExpiredAt   time.Time `json:"expiredAt"`
 	DeviceName  string    `json:"deviceName"`
 	CountryName string    `json:"countryName"`

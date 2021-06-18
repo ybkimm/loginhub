@@ -13,7 +13,7 @@ SELECT id, email, picture_id, given_name, family_name, gender, birthdate, flag F
 LIMIT 1
 `
 
-func (q *Queries) GetUser(ctx context.Context, id string) (User, error) {
+func (q *Queries) GetUser(ctx context.Context, id []byte) (User, error) {
 	row := q.queryRow(ctx, q.getUserStmt, getUser, id)
 	var i User
 	err := row.Scan(

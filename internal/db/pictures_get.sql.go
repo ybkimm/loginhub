@@ -13,7 +13,7 @@ SELECT id, desc_text, file_size, width, height FROM pictures WHERE
 LIMIT 1
 `
 
-func (q *Queries) GetPicture(ctx context.Context, id string) (Picture, error) {
+func (q *Queries) GetPicture(ctx context.Context, id []byte) (Picture, error) {
 	row := q.queryRow(ctx, q.getPictureStmt, getPicture, id)
 	var i Picture
 	err := row.Scan(
