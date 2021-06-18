@@ -5,11 +5,11 @@ type Config struct {
 	Port  int  `json:"port"`
 
 	Database struct {
+		DBName   string `json:"db_name"`
 		Host     string `json:"host"`
 		Port     string `json:"port"`
 		User     string `json:"user"`
 		Password string `json:"password"`
-		Name     string `json:"name"`
 		SSL      struct {
 			Enabled  bool   `json:"enabled"`
 			Cert     string `json:"cert"`
