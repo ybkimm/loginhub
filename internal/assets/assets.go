@@ -9,17 +9,18 @@ import (
 	"path/filepath"
 	"strconv"
 
-	"github.com/ybkimm/loginhub/internal/log"
 	"go.uber.org/zap"
 )
 
 type AssetHandler struct {
-	fs fs.FS
+	fs     fs.FS
+	logger *zap.Logger
 }
 
-func NewHandler(fs fs.FS) *AssetHandler {
+func NewHandler(fs fs.FS, logger *zap.Logger) *AssetHandler {
 	return &AssetHandler{
-		fs: fs,
+		fs:     fs,
+		logger: logger,
 	}
 }
 
@@ -33,7 +34,7 @@ func (h *AssetHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		filetype = "application/octet-stream"
 	}
 
-	log.Debug("assets: trying to open", zap.String("filename", filename), zap.String("mime type", filetype))
+	h.logger.Debug("assets: trying to open", zap.String("filename", filename), zap.String("mime type", filetype))
 
 	f, err := h.fs.Open(filename)
 	if errors.Is(err, fs.ErrNotExist) {
@@ -42,14 +43,14 @@ func (h *AssetHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		io.WriteString(w, "404 Not Found")
 		return
 	} else if err != nil {
-		log.Error("assets: open error", zap.Error(err))
+		h.logger.Error("assets: open error", zap.Error(err))
 		sendInternalServerError(w)
 		return
 	}
 
 	stat, err := f.Stat()
 	if err != nil {
-		log.Error("assets: stat error", zap.Error(err))
+		h.logger.Error("assets: stat error", zap.Error(err))
 		sendInternalServerError(w)
 		return
 	}

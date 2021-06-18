@@ -16,7 +16,7 @@ const (
 )
 
 var (
-	imageHandler  = http.StripPrefix(imagePrefix, assets.NewHandler(&realfs{imageDir}))
-	scriptHandler = http.StripPrefix(scriptPrefix, assets.NewHandler(&realfs{scriptDir}))
-	styleHandler  = http.StripPrefix(stylePrefix, assets.NewHandler(&realfs{styleDir}))
+	imageHandler  = http.StripPrefix(imagePrefix, assets.NewHandler(&realfs{imageDir}, logger))
+	scriptHandler = http.StripPrefix(scriptPrefix, assets.NewHandler(&realfs{scriptDir}, logger))
+	styleHandler  = http.StripPrefix(stylePrefix, assets.NewHandler(&realfs{styleDir}, logger))
 )
