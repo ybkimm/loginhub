@@ -1,6 +1,6 @@
 package configs
 
-const DefaultConfigFilePath = "/etc/loginhub.conf"
+const DefaultConfigFilePath = "/etc/loginhub/loginhub.conf"
 
 var DefaultConfig = &Config{
 	Debug: true,
