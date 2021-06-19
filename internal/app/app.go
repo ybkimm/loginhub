@@ -3,9 +3,7 @@ package app
 import (
 	"context"
 	"database/sql"
-	"errors"
 	"fmt"
-	"io/fs"
 	"net/http"
 	"os"
 	"os/signal"
@@ -68,13 +66,10 @@ func (app *Application) Run() error {
 }
 
 func (app *Application) loadConfigs() error {
-	cfgs, err := configs.ReadFromFile(app.opts.ConfigPath)
-	if errors.Is(err, fs.ErrNotExist) {
-		cfgs = &configs.DefaultConfig
-	} else if err != nil {
+	cfgs, err := configs.Load(app.opts.ConfigPath)
+	if err != nil {
 		return wrapErr(err, "failed to load configuration file")
 	}
-
 	app.cfgs = cfgs
 	return nil
 }
