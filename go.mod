@@ -3,6 +3,7 @@ module github.com/ybkimm/loginhub
 go 1.16
 
 require (
+	github.com/evanw/esbuild v0.12.9 // indirect
 	github.com/fsnotify/fsnotify v1.4.9 // indirect
 	github.com/go-fsnotify/fsnotify v0.0.0-20180321022601-755488143dae // indirect
 	github.com/google/uuid v1.2.0 // indirect

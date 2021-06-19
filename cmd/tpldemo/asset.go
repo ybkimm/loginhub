@@ -9,14 +9,34 @@ import (
 const (
 	imagePrefix  = "/assets/images"
 	imageDir     = "assets/images"
-	scriptPrefix = "/assets/scripts"
-	scriptDir    = "assets/scripts"
 	stylePrefix  = "/assets/styles"
 	styleDir     = "build/styles"
+	scriptPrefix = "/assets/scripts"
+	scriptDir    = "assets/scripts"
 )
 
 var (
-	imageHandler  = http.StripPrefix(imagePrefix, assets.NewHandler(&realfs{imageDir}, logger))
-	scriptHandler = http.StripPrefix(scriptPrefix, assets.NewHandler(&realfs{scriptDir}, logger))
-	styleHandler  = http.StripPrefix(stylePrefix, assets.NewHandler(&realfs{styleDir}, logger))
+	imageHandler = assets.NewHandlerWithStripPrefix(
+		imagePrefix,
+		assets.AssetHandlerOpts{
+			FS:     &realfs{scriptDir},
+			Logger: logger,
+		},
+	)
+	styleHandler = assets.NewHandlerWithStripPrefix(
+		stylePrefix,
+		assets.AssetHandlerOpts{
+			FS:       &realfs{styleDir},
+			Logger:   logger,
+			MimeType: "text/css;charset=utf-8",
+		},
+	)
+	scriptHandler = http.StripPrefix(
+		scriptPrefix,
+		http.HandlerFunc(handleScript),
+	)
 )
+
+func handleScript(w http.ResponseWriter, r *http.Request) {
+	// TODO...
+}

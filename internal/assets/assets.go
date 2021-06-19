@@ -13,30 +13,50 @@ import (
 )
 
 type AssetHandler struct {
-	fs     fs.FS
-	logger *zap.Logger
+	fs       fs.FS
+	logger   *zap.Logger
+	mimeType string // Infer from extension if empty string
 }
 
-func NewHandler(fs fs.FS, logger *zap.Logger) *AssetHandler {
+type AssetHandlerOpts struct {
+	FS       fs.FS
+	Logger   *zap.Logger
+	MimeType string
+}
+
+func NewHandler(opts AssetHandlerOpts) http.Handler {
 	return &AssetHandler{
-		fs:     fs,
-		logger: logger,
+		fs:       opts.FS,
+		logger:   opts.Logger,
+		mimeType: opts.MimeType,
 	}
+}
+
+func NewHandlerWithStripPrefix(prefix string, opts AssetHandlerOpts) http.Handler {
+	return http.StripPrefix(
+		prefix,
+		NewHandler(opts),
+	)
 }
 
 func (h *AssetHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	var (
-		filename = r.URL.Path[1:]
-		filetype = mime.TypeByExtension(filepath.Ext(filename))
+		fileName = r.URL.Path[1:]
+		fileType string
 	)
 
-	if len(filetype) == 0 {
-		filetype = "application/octet-stream"
+	if len(h.mimeType) == 0 {
+		fileType = mime.TypeByExtension(filepath.Ext(fileName))
+		if len(fileType) == 0 {
+			fileType = "application/octet-stream"
+		}
+	} else {
+		fileType = h.mimeType
 	}
 
-	h.logger.Debug("assets: trying to open", zap.String("filename", filename), zap.String("mime type", filetype))
+	h.logger.Debug("assets: trying to open", zap.String("filename", fileName), zap.String("mime type", fileType))
 
-	f, err := h.fs.Open(filename)
+	f, err := h.fs.Open(fileName)
 	if errors.Is(err, fs.ErrNotExist) {
 		w.Header().Set("Content-Type", "text/plain;charset=utf-8")
 		w.WriteHeader(http.StatusNotFound)
@@ -57,7 +77,7 @@ func (h *AssetHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 	var fileSize = strconv.FormatInt(stat.Size(), 10)
 
-	w.Header().Set("Content-Type", filetype)
+	w.Header().Set("Content-Type", fileType)
 	w.Header().Set("Content-Length", fileSize)
 	w.WriteHeader(http.StatusOK)
 	io.Copy(w, f)
