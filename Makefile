@@ -2,9 +2,9 @@ CSS_SRC := assets/styles
 CSS_DST := build/styles
 $(shell mkdir -p ${CSS_DST})
 
-JS_SRC := assets/scripts
-JS_DST := build/scripts
-$(shell mkdir -p ${JS_DST})
+TS_SRC := assets/scripts
+TS_DST := build/scripts
+$(shell mkdir -p ${TS_DST})
 
 KEY_DST := internal/secrets
 KEY_FILES := $(addprefix ${KEY_DST}/,token.key)
@@ -15,7 +15,7 @@ SQL_DST_FILE := ${SQL_DST}/db.go
 $(shell mkdir -p ${SQL_DST})
 
 POSTCSS := npx postcss-cli
-DENO_BUNDLE := deno bundle -c ./tsconfig.json
+ESBUILD := npx esbuild --bundle --minify
 KEYGEN := ./scripts/keygen.sh
 SQLC := sqlc
 
@@ -37,10 +37,10 @@ ${CSS_DST}/%.css: ${CSS_SRC}/%.css tailwind.config.js
 		-o $@ $(firstword $<)
 
 .PHONY: script
-script: ${JS_DST}/main.bundle.js
+script: ${TS_DST}/main.bundle.js
 
-${JS_DST}/%.bundle.js: ${JS_SRC}/%.ts tsconfig.json
-	${DENO_BUNDLE} $(firstword $<) $@
+${TS_DST}/%.bundle.js: ${TS_SRC}/%.ts tsconfig.json
+	${ESBUILD} --outfile=$@ $(firstword $<)
 
 .PHONY: secrets
 secrets: ${KEY_FILES}
