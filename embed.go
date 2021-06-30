@@ -33,3 +33,6 @@ var imageFS embed.FS
 func ImageDir() fs.FS {
 	return subfs(imageFS, "assets/images")
 }
+
+//go:embed assets/html/index.html
+var IndexHTML []byte
