@@ -5,17 +5,19 @@ package db
 import (
 	"database/sql"
 	"time"
+
+	"github.com/google/uuid"
 )
 
 type Client struct {
-	ID               []byte         `json:"id"`
+	ID               uuid.UUID      `json:"id"`
 	ClientName       string         `json:"clientName"`
 	SecretHash       string         `json:"secretHash"`
-	OwnerID          []byte         `json:"ownerID"`
+	OwnerID          uuid.UUID      `json:"ownerID"`
 	ClientCategory   string         `json:"clientCategory"`
 	ClientDesc       string         `json:"clientDesc"`
-	BannerPictureID  []byte         `json:"bannerPictureID"`
-	IconID           []byte         `json:"iconID"`
+	BannerPictureID  uuid.UUID      `json:"bannerPictureID"`
+	IconID           uuid.UUID      `json:"iconID"`
 	RedirectUris     sql.NullString `json:"redirectUris"`
 	TermsUrl         sql.NullString `json:"termsUrl"`
 	PrivacyPolicyUrl sql.NullString `json:"privacyPolicyUrl"`
@@ -23,24 +25,24 @@ type Client struct {
 }
 
 type Password struct {
-	ID       []byte `json:"id"`
-	OwnerID  []byte `json:"ownerID"`
-	PassHash string `json:"passHash"`
-	Revoked  bool   `json:"revoked"`
+	ID       uuid.UUID `json:"id"`
+	OwnerID  uuid.UUID `json:"ownerID"`
+	PassHash string    `json:"passHash"`
+	Revoked  bool      `json:"revoked"`
 }
 
 type Picture struct {
-	ID       []byte `json:"id"`
-	DescText string `json:"descText"`
-	FileSize int32  `json:"fileSize"`
-	Width    int32  `json:"width"`
-	Height   int32  `json:"height"`
+	ID       uuid.UUID `json:"id"`
+	DescText string    `json:"descText"`
+	FileSize int32     `json:"fileSize"`
+	Width    int32     `json:"width"`
+	Height   int32     `json:"height"`
 }
 
 type Token struct {
-	ID          []byte    `json:"id"`
-	OwnerID     []byte    `json:"ownerID"`
-	ClientID    []byte    `json:"clientID"`
+	ID          uuid.UUID `json:"id"`
+	OwnerID     uuid.UUID `json:"ownerID"`
+	ClientID    uuid.UUID `json:"clientID"`
 	ExpiredAt   time.Time `json:"expiredAt"`
 	Revoked     bool      `json:"revoked"`
 	DeviceName  string    `json:"deviceName"`
@@ -49,9 +51,9 @@ type Token struct {
 }
 
 type User struct {
-	ID         []byte    `json:"id"`
+	ID         uuid.UUID `json:"id"`
 	Email      string    `json:"email"`
-	PictureID  []byte    `json:"pictureID"`
+	PictureID  uuid.UUID `json:"pictureID"`
 	GivenName  string    `json:"givenName"`
 	FamilyName string    `json:"familyName"`
 	Gender     string    `json:"gender"`

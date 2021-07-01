@@ -5,6 +5,8 @@ package db
 
 import (
 	"context"
+
+	"github.com/google/uuid"
 )
 
 const revokePassword = `-- name: RevokePassword :exec
@@ -15,7 +17,7 @@ WHERE
     revoked = 'false'
 `
 
-func (q *Queries) RevokePassword(ctx context.Context, ownerID []byte) error {
+func (q *Queries) RevokePassword(ctx context.Context, ownerID uuid.UUID) error {
 	_, err := q.exec(ctx, q.revokePasswordStmt, revokePassword, ownerID)
 	return err
 }

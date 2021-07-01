@@ -1,8 +1,8 @@
 -- +goose Up
 CREATE TABLE users (
-    id BYTEA(16) NOT NULL,
+    id UUID NOT NULL,
     email VARCHAR(512) NOT NULL,
-    picture_id BYTEA(16) NOT NULL,
+    picture_id UUID NOT NULL,
     given_name VARCHAR(64) NOT NULL,
     family_name VARCHAR(64) NOT NULL,
     gender CHAR(1) NOT NULL,

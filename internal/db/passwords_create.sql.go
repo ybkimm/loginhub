@@ -5,6 +5,8 @@ package db
 
 import (
 	"context"
+
+	"github.com/google/uuid"
 )
 
 const createPassword = `-- name: CreatePassword :exec
@@ -20,9 +22,9 @@ INSERT INTO passwords (
 `
 
 type CreatePasswordParams struct {
-	ID       []byte `json:"id"`
-	OwnerID  []byte `json:"ownerID"`
-	PassHash string `json:"passHash"`
+	ID       uuid.UUID `json:"id"`
+	OwnerID  uuid.UUID `json:"ownerID"`
+	PassHash string    `json:"passHash"`
 }
 
 func (q *Queries) CreatePassword(ctx context.Context, arg CreatePasswordParams) error {

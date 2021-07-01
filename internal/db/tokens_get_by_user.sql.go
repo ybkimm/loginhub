@@ -5,6 +5,8 @@ package db
 
 import (
 	"context"
+
+	"github.com/google/uuid"
 )
 
 const getTokenByUserID = `-- name: GetTokenByUserID :one
@@ -13,7 +15,7 @@ SELECT id, owner_id, client_id, expired_at, revoked, device_name, country_name, 
 LIMIT 1
 `
 
-func (q *Queries) GetTokenByUserID(ctx context.Context, ownerID []byte) (Token, error) {
+func (q *Queries) GetTokenByUserID(ctx context.Context, ownerID uuid.UUID) (Token, error) {
 	row := q.queryRow(ctx, q.getTokenByUserIDStmt, getTokenByUserID, ownerID)
 	var i Token
 	err := row.Scan(

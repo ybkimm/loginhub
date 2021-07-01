@@ -5,6 +5,8 @@ package db
 
 import (
 	"context"
+
+	"github.com/google/uuid"
 )
 
 const revokeToken = `-- name: RevokeToken :exec
@@ -14,7 +16,7 @@ WHERE
     id = $1
 `
 
-func (q *Queries) RevokeToken(ctx context.Context, id []byte) error {
+func (q *Queries) RevokeToken(ctx context.Context, id uuid.UUID) error {
 	_, err := q.exec(ctx, q.revokeTokenStmt, revokeToken, id)
 	return err
 }

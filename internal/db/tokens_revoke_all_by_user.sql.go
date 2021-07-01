@@ -5,6 +5,8 @@ package db
 
 import (
 	"context"
+
+	"github.com/google/uuid"
 )
 
 const revokeAllTokensByUserID = `-- name: RevokeAllTokensByUserID :exec
@@ -15,7 +17,7 @@ WHERE
     revoked = 'false'
 `
 
-func (q *Queries) RevokeAllTokensByUserID(ctx context.Context, ownerID []byte) error {
+func (q *Queries) RevokeAllTokensByUserID(ctx context.Context, ownerID uuid.UUID) error {
 	_, err := q.exec(ctx, q.revokeAllTokensByUserIDStmt, revokeAllTokensByUserID, ownerID)
 	return err
 }

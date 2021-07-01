@@ -6,6 +6,8 @@ package db
 import (
 	"context"
 	"database/sql"
+
+	"github.com/google/uuid"
 )
 
 const updateClient = `-- name: UpdateClient :exec
@@ -24,12 +26,12 @@ WHERE
 `
 
 type UpdateClientParams struct {
-	ID               []byte         `json:"id"`
+	ID               uuid.UUID      `json:"id"`
 	ClientName       string         `json:"clientName"`
 	ClientCategory   string         `json:"clientCategory"`
 	ClientDesc       string         `json:"clientDesc"`
-	BannerPictureID  []byte         `json:"bannerPictureID"`
-	IconID           []byte         `json:"iconID"`
+	BannerPictureID  uuid.UUID      `json:"bannerPictureID"`
+	IconID           uuid.UUID      `json:"iconID"`
 	RedirectUris     sql.NullString `json:"redirectUris"`
 	TermsUrl         sql.NullString `json:"termsUrl"`
 	PrivacyPolicyUrl sql.NullString `json:"privacyPolicyUrl"`

@@ -6,6 +6,8 @@ package db
 import (
 	"context"
 	"time"
+
+	"github.com/google/uuid"
 )
 
 const updateUser = `-- name: UpdateUser :exec
@@ -22,9 +24,9 @@ WHERE
 `
 
 type UpdateUserParams struct {
-	ID         []byte    `json:"id"`
+	ID         uuid.UUID `json:"id"`
 	Email      string    `json:"email"`
-	PictureID  []byte    `json:"pictureID"`
+	PictureID  uuid.UUID `json:"pictureID"`
 	GivenName  string    `json:"givenName"`
 	FamilyName string    `json:"familyName"`
 	Gender     string    `json:"gender"`

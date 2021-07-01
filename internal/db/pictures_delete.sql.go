@@ -5,6 +5,8 @@ package db
 
 import (
 	"context"
+
+	"github.com/google/uuid"
 )
 
 const deletePicture = `-- name: DeletePicture :exec
@@ -12,7 +14,7 @@ DELETE FROM pictures WHERE
     id = $1
 `
 
-func (q *Queries) DeletePicture(ctx context.Context, id []byte) error {
+func (q *Queries) DeletePicture(ctx context.Context, id uuid.UUID) error {
 	_, err := q.exec(ctx, q.deletePictureStmt, deletePicture, id)
 	return err
 }

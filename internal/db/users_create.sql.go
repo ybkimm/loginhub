@@ -6,6 +6,8 @@ package db
 import (
 	"context"
 	"time"
+
+	"github.com/google/uuid"
 )
 
 const createUser = `-- name: CreateUser :exec
@@ -31,9 +33,9 @@ INSERT INTO users (
 `
 
 type CreateUserParams struct {
-	ID         []byte    `json:"id"`
+	ID         uuid.UUID `json:"id"`
 	Email      string    `json:"email"`
-	PictureID  []byte    `json:"pictureID"`
+	PictureID  uuid.UUID `json:"pictureID"`
 	GivenName  string    `json:"givenName"`
 	FamilyName string    `json:"familyName"`
 	Gender     string    `json:"gender"`

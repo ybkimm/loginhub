@@ -1,13 +1,13 @@
 -- +goose Up
 CREATE TABLE clients (
-    id BYTEA(16) NOT NULL,
+    id UUID NOT NULL,
     client_name VARCHAR(128) NOT NULL,
     secret_hash CHAR(64) NOT NULL,
-    owner_id BYTEA(16) NOT NULL,
+    owner_id UUID NOT NULL,
     client_category VARCHAR(128) NOT NULL,
     client_desc TEXT NOT NULL DEFAULT '',
-    banner_picture_id BYTEA(16),
-    icon_id BYTEA(16),
+    banner_picture_id UUID,
+    icon_id UUID,
     redirect_uris TEXT,
     terms_url varchar(512),
     privacy_policy_url varchar(512),

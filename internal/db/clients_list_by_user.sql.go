@@ -5,6 +5,8 @@ package db
 
 import (
 	"context"
+
+	"github.com/google/uuid"
 )
 
 const listClientByUserID = `-- name: ListClientByUserID :many
@@ -14,9 +16,9 @@ LIMIT $2 OFFSET $3
 `
 
 type ListClientByUserIDParams struct {
-	OwnerID []byte `json:"ownerID"`
-	Limit   int32  `json:"limit"`
-	Offset  int32  `json:"offset"`
+	OwnerID uuid.UUID `json:"ownerID"`
+	Limit   int32     `json:"limit"`
+	Offset  int32     `json:"offset"`
 }
 
 func (q *Queries) ListClientByUserID(ctx context.Context, arg ListClientByUserIDParams) ([]Client, error) {

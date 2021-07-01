@@ -6,6 +6,8 @@ package db
 import (
 	"context"
 	"time"
+
+	"github.com/google/uuid"
 )
 
 const createToken = `-- name: CreateToken :exec
@@ -27,9 +29,9 @@ INSERT INTO tokens (
 `
 
 type CreateTokenParams struct {
-	ID          []byte    `json:"id"`
-	OwnerID     []byte    `json:"ownerID"`
-	ClientID    []byte    `json:"clientID"`
+	ID          uuid.UUID `json:"id"`
+	OwnerID     uuid.UUID `json:"ownerID"`
+	ClientID    uuid.UUID `json:"clientID"`
 	ExpiredAt   time.Time `json:"expiredAt"`
 	DeviceName  string    `json:"deviceName"`
 	CountryName string    `json:"countryName"`

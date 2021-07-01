@@ -5,6 +5,8 @@ package db
 
 import (
 	"context"
+
+	"github.com/google/uuid"
 )
 
 const createPicture = `-- name: CreatePicture :exec
@@ -24,11 +26,11 @@ INSERT INTO pictures (
 `
 
 type CreatePictureParams struct {
-	ID       []byte `json:"id"`
-	DescText string `json:"descText"`
-	FileSize int32  `json:"fileSize"`
-	Width    int32  `json:"width"`
-	Height   int32  `json:"height"`
+	ID       uuid.UUID `json:"id"`
+	DescText string    `json:"descText"`
+	FileSize int32     `json:"fileSize"`
+	Width    int32     `json:"width"`
+	Height   int32     `json:"height"`
 }
 
 func (q *Queries) CreatePicture(ctx context.Context, arg CreatePictureParams) error {

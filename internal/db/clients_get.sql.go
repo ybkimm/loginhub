@@ -5,6 +5,8 @@ package db
 
 import (
 	"context"
+
+	"github.com/google/uuid"
 )
 
 const getClient = `-- name: GetClient :one
@@ -13,7 +15,7 @@ SELECT id, client_name, secret_hash, owner_id, client_category, client_desc, ban
 LIMIT 1
 `
 
-func (q *Queries) GetClient(ctx context.Context, id []byte) (Client, error) {
+func (q *Queries) GetClient(ctx context.Context, id uuid.UUID) (Client, error) {
 	row := q.queryRow(ctx, q.getClientStmt, getClient, id)
 	var i Client
 	err := row.Scan(

@@ -5,6 +5,8 @@ package db
 
 import (
 	"context"
+
+	"github.com/google/uuid"
 )
 
 const deleteClient = `-- name: DeleteClient :exec
@@ -12,7 +14,7 @@ DELETE FROM clients WHERE
     id = $1
 `
 
-func (q *Queries) DeleteClient(ctx context.Context, id []byte) error {
+func (q *Queries) DeleteClient(ctx context.Context, id uuid.UUID) error {
 	_, err := q.exec(ctx, q.deleteClientStmt, deleteClient, id)
 	return err
 }
