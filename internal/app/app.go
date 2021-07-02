@@ -101,7 +101,7 @@ func (app *Application) makeServer() error {
 		return ErrConfigNotLoaded
 	}
 
-	handler := routes.Handler()
+	handler := routes.NewRouter(app.logger)
 	svr := &http.Server{
 		Addr:         fmt.Sprintf(":%d", app.cfgs.Port),
 		ReadTimeout:  readTimeout,
