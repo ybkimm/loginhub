@@ -28,6 +28,7 @@ style: ${CSS_DST}/style.css
 
 ${CSS_DST}/%.css: ${CSS_SRC}/%.css tailwind.config.js
 	${POSTCSS} \
+		--no-map \
 		--use postcss-nesting \
 		--use postcss-import \
 		--use tailwindcss \
