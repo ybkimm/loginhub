@@ -23,6 +23,10 @@ SQLC := sqlc
 tpldemo:
 	go run github.com/ybkimm/loginhub/cmd/tpldemo
 
+.PHONY: run
+run: ${CSS_DST}/style.css ${TS_DST}/main.bundle.js
+	go run github.com/ybkimm/loginhub/cmd/loginhub
+
 .PHONY: style
 style: ${CSS_DST}/style.css
 
@@ -40,7 +44,7 @@ ${CSS_DST}/%.css: ${CSS_SRC}/%.css tailwind.config.js
 .PHONY: script
 script: ${TS_DST}/main.bundle.js
 
-${TS_DST}/%.bundle.js: ${TS_SRC}/%.ts tsconfig.json
+${TS_DST}/%.bundle.js: ${TS_SRC}/%.ts tsconfig.json $(shell find assets/scripts \( -name '*.ts' -o -name '*.tsx' -o -name '*.js' -o -name '*.jsx' \))
 	${ESBUILD} --outfile=$@ $(firstword $<)
 
 .PHONY: secrets
