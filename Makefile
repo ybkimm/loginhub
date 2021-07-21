@@ -15,7 +15,7 @@ SQL_DST_FILE := ${SQL_DST}/db.go
 $(shell mkdir -p ${SQL_DST})
 
 POSTCSS := npx postcss-cli
-ESBUILD := npx esbuild --bundle --minify
+ESBUILD := npx esbuild --bundle
 KEYGEN := ./scripts/keygen.sh
 SQLC := sqlc
 
@@ -26,6 +26,9 @@ tpldemo:
 .PHONY: run
 run: ${CSS_DST}/style.css ${TS_DST}/main.bundle.js
 	go run github.com/ybkimm/loginhub/cmd/loginhub
+
+.PHONY: build
+build: ESBUILD += --minify
 
 .PHONY: style
 style: ${CSS_DST}/style.css
