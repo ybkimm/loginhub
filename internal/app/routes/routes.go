@@ -22,16 +22,16 @@ func NewRouter(logger *zap.Logger) *mux.Router {
 	r.Methods("GET").
 		PathPrefix(imagePrefix).
 		Handler(imageHandler(logger))
+
 	r.Methods("GET").
 		PathPrefix(stylePrefix).
 		Handler(styleHandler(logger))
+
 	r.Methods("GET").
 		PathPrefix(scriptPrefix).
 		Handler(scriptHandler(logger))
 
-	r.Methods("GET").
-		Path("/login").
-		Handler(viewHandler(logger))
+	r.NotFoundHandler = viewHandler(logger)
 
 	return r
 }

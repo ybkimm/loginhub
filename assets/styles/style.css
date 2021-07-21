@@ -16,3 +16,34 @@
         font-size: 1rem;
     }
 }
+
+@keyframes page-transition-register-enter {
+	from {
+		transform: translateX(100%);
+	}
+
+	to {
+		transform: translateX(0);
+	}
+}
+
+@keyframes page-transition-register-exit {
+	from {
+		transform: translateX(-100%);
+	}
+
+	to {
+		transform: translateX(-200%);
+	}
+}
+
+@layer components {
+	.page-transition-register-enter-active {
+		animation: 400ms cubic-bezier(0.750, 0, 0.250, 1) 0s page-transition-register-enter;
+	}
+
+	.page-transition-register-exit-active {
+		animation: 400ms cubic-bezier(0.750, 0, 0.250, 1) 0s page-transition-register-exit;
+	}
+}
+
