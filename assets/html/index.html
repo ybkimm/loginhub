@@ -1,14 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr" class="h-full">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LoginHub</title>
 
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet">
   <link rel="stylesheet" href="/assets/styles/style.css">
+
+  <style>
+    body.preload * {
+      transition: none !important;
+    }
+  </style>
+
+  <script>
+    ;((fn) => {
+      document.readyState !== 'loading'
+        ? fn()
+        : document.addEventListener('DOMContentLoaded', fn)
+    })(() => document.body.classList.remove('preload'))
+  </script>
 </head>
-<body>
+<body class="preload h-full">
   <div id="app"></div>
   <script src="/assets/scripts/main.bundle.js"></script>
 </body>
